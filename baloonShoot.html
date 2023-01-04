@@ -1,0 +1,102 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<style>
+    #div1{
+        border:1px solid red;
+        height:450px;
+        width: 450px;
+    }
+    #circle1{
+    height: 100;
+    width: 100;
+    border: 1px solid;
+    border-radius: 50%;
+    position: absolute;
+    top: 150px;
+    left: 300;
+    }
+    #circle2{
+        height: 70;
+    width: 70;
+    border: 1px solid;
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    left: 300;
+    }
+    #circle3{
+        height: 180;
+    width: 180;
+    border: 1px solid;
+    border-radius: 50%;
+    position: absolute;
+    top: 270px;
+    left: 200;
+    }
+    #arrow{
+        height: 0;
+        width:40px;
+        border:1px solid black;
+        top:2px;
+        position:relative;
+    }
+</style>
+<script type="text/babel">
+    class Hellow extends React.Component{
+        state={
+            d:10,
+            l:0
+        }
+        constructor(){
+            super();
+            document.addEventListener('keydown',(event)=>{
+                
+                if (event.key=='ArrowDown'){
+                    this.setState({d:this.state.d+10})
+                }
+                if(event.key=='ArrowUp'){
+                    this.setState({d:this.state.d-10})
+                }
+                if(event.key=='Enter'){
+                     setInterval(()=>{
+                        this.setState({l:this.state.l+40})
+                        
+                     },1000)
+                        
+                }
+       
+               })
+        }
+        baloonClick(event){
+                if( event.target.id=='circle1'){
+                this.refs.ref1.style['background-color']='red';
+                this.refs.ref2.style['background-color']='white'  
+                this.refs.ref3.style['background-color']='white'  
+            }
+            if( event.target.id=='circle2'){
+                this.refs.ref1.style['background-color']='white';
+                this.refs.ref2.style['background-color']='red'  
+                this.refs.ref3.style['background-color']='white'  
+            }
+            if( event.target.id=='circle3'){
+                this.refs.ref1.style['background-color']='white';
+                this.refs.ref2.style['background-color']='white'  
+                this.refs.ref3.style['background-color']='red'  
+            }
+               
+        
+    }
+        render(){
+            return <div onClick={this.baloonClick.bind(this)}
+            id='div1'>
+                <div style={{top:this.state.d,left:this.state.l}}   id='arrow'></div>
+                <div id='circle1' ref='ref1'></div>
+                <div id='circle2' ref='ref2'></div>
+                <div id='circle3' ref='ref3'></div>
+                </div>
+        }
+    }
+    ReactDOM.render(<Hellow/>,document.getElementById('root'))
+</script>

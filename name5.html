@@ -1,0 +1,21 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+
+<div id="root"></div>
+<script type="text/babel">
+function App(){
+    return <div>
+        <Naresh/>
+        <Naresh/>
+        <Naresh/>
+        <Naresh/>
+        <Naresh/>
+        </div>
+}
+function Naresh(){
+    return <div><h1>Naresh</h1></div>
+}
+
+ReactDOM.render(<App/>,document.getElementById('root'))
+</script>

@@ -1,0 +1,28 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    function Sum(){
+        var n1ref=React.useRef()
+        const [result,setResult]=React.useState(0)
+        const [clr,setClr]=React.useState('')
+            var n2ref=React.useRef()
+            var resref=React.useRef()
+            
+        function add(){
+            
+            var sum=Number(n1ref.current.value)+Number(n2ref.current.value)
+            setResult(sum)
+            setClr(sum>100?'green':'red')
+
+        }
+        return <div>
+            <p><b>enter no1</b><input ref={n1ref}/></p>
+            <p><b>enter no2</b><input ref={n2ref}/></p>
+            <button onClick={add}>Sum</button>
+            <h1  style={{color:clr}}>{result}</h1>
+            </div>
+    }
+    ReactDOM.render(<Sum/>,document.querySelector('#root'))
+    </script>

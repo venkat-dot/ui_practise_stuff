@@ -1,0 +1,27 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    class A extends React.Component{
+        
+        render(){
+        return <h1>A {this.props.user}</h1>    
+        }
+    }
+    class B extends React.Component{
+        render(){
+            return <h1>B {this.props.user}</h1>
+        }
+    }
+    class Hellow extends React.Component{
+        render(){
+            var name='sachin'
+            return <div>
+                <A user={name}/>
+                <B user='Dhoni'/>
+                </div>
+        }
+    }
+    ReactDOM.render(<Hellow/>,document.getElementById('root'))
+</script>

@@ -1,0 +1,41 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    function Hellow (){
+        
+        React.useEffect(()=>{
+            console.log('useEffect ComponentDidMount')
+        },[])
+       
+        React.useEffect(()=>{
+            return ()=>{
+console.log('useEffect componentWillUnmount') // componentWillUnmount will be executed before unmounting element
+            }
+        })
+        
+            return <div>
+           <h1>Hi Man</h1>
+                </div>
+        }
+        function App(){
+            const [cnt,setCnt]=React.useState(0)
+            function btnClick(){
+                  setCnt(cnt+1)
+        }
+        React.useEffect(()=>{
+            if(cnt!=0){
+                console.log('useEffectcomponentDidUpdate')
+            }
+        },[cnt])
+            return <div>
+                <p>count:{cnt}</p>
+                <button onClick={btnClick}>Click</button>
+                {cnt%2==0 && <Hellow/>}
+                </div>
+        }
+        
+    
+    ReactDOM.render(<App/>,document.getElementById('root'))
+</script>

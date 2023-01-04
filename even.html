@@ -1,0 +1,28 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    class Even extends React.Component{
+        state={result:'result',clr:'blue'}
+        ref1=React.createRef()
+       
+        check=()=>{
+           let num=this.ref1.current.value 
+                  this.setState({
+                                 result:num % 2==0?'Even':'odd'
+                                               })
+                                               this.setState({
+                                 clr:this.state.result==='Even'?'green':'red'
+                                               })
+        }
+        render(){
+            return <div>
+                   <p><b>enter number:</b> <input ref={this.ref1}/></p>
+                   <button onClick={this.check}>Check</button>
+                   <h1  style={{color:this.state.clr}}>{this.state.result}</h1>
+                   </div>
+        }
+    }
+    ReactDOM.render(<Even/>,document.querySelector('#root'))
+</script>

@@ -1,0 +1,31 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div  id="root"></div>
+<script type="text/babel">
+    class App extends React.Component{
+        state={
+            init:0,
+            init1:1
+        }
+          btnClick(){
+                     for (var i=1;i<=5;i++){
+                        this.setState((state,prop)=>{
+                            return {
+                                init:state.init+1
+                            }
+                        })
+                        
+                     }
+          }
+          
+
+        render(){
+            return <div>
+                <h1>{this.state.init}{this.state.init1}</h1>
+                <button onClick={this.btnClick.bind(this)}>click</button>
+                </div>
+        }
+    }
+    ReactDOM.render(<App/>,document.querySelector('#root'))
+    </script>

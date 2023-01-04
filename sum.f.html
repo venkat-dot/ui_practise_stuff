@@ -1,0 +1,26 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    
+   function Sum(){
+    function Click1(){
+    let sum=Number(document.querySelector('#no1').value)+Number(document.querySelector('#no2').value)
+       document.querySelector('h1').innerText=sum    
+}
+    return <div>
+        <p>Enter No1 : <input id='no1'/></p>
+        
+        
+        <p>Enter No2 : <input id='no2'/></p>
+        
+        <button id='button' onClick={Click1}>Sum</button>
+        <h1><b>Result</b> </h1>
+        </div>
+   }
+    
+
+   ReactDOM.render(<Sum/>,document.getElementById('root'))
+  
+</script>

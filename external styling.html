@@ -1,0 +1,150 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<style>
+    #header{
+        text-align: center;
+    font-size: 60px;
+    font-weight: bold;
+    background-color: teal;
+    }
+    body{
+        margin:0px
+    }
+    .menu{
+        text-align: right;
+    background-color: yellow;
+    line-height: 40px;
+    }
+    .mobile-menu{
+    top: 69px;
+    text-align: left;
+    height: 200px;
+    background-color: darkolivegreen;
+    position: absolute;
+    display: inline-block;
+    width: 162;
+    left:0px;
+    left: -160px;
+    transition: left 2s;
+    }
+    .mobile-menu>a{
+    margin-right: 20px;
+    font-size: 25;
+    letter-spacing: 2.5px;
+    color: #25b91a;
+    cursor: pointer;
+    display: block;
+    padding: 7px;
+       }
+    .mobile-button{
+        position: absolute;
+        right:0px;
+        top: 70;
+       background-color: blue;
+    }
+    .menu>a{
+        margin-right: 20px;
+    font-size: 25;
+    letter-spacing: 2.5px;
+    color: #1a0303; 
+    cursor: pointer;
+    }
+    .footer{
+        position:fixed;
+        text-align: center;
+        font-size: 20px;
+        background-color: yellow;
+        bottom:0px;
+        width: 100%;
+    }
+    .menuclick{
+        font-style: italic;
+        text-shadow: #a7acb3;
+        color: rgb(36, 15, 195) !important;
+    }
+</style>
+<script type="text/babel">
+    function Header(){
+          return <div  style={{'font-size':document.body.offsetWidth<=700?40:60}}
+                 id='header'>My first React Page
+                 </div>
+    }
+    class Menu extends React.Component{
+        state={
+            msg:'',
+            ismobileMenu:document.body.offsetWidth<=700?true:false,
+            l:-165
+        }
+        constructor(){
+            super()
+            window.addEventListener('resize',function(){
+                this.setState({ismobileMenu:document.body.offsetWidth<=700?true:false})
+            }.bind(this))
+        }
+        btnClick(){
+            this.setState({l:this.state.l==-165?0:-165})
+        }
+        fnMenuClick(eve){
+            this.setState({msg:eve.target.id},()=>{
+                this.state.msg
+            })
+            if(eve.target.tagName!=='A'){
+                return ;
+            }
+            this.setState({l:-165})
+        }
+        render(){
+        return <div>
+                {this.state.ismobileMenu && <button className='mobile-button' onClick={this.btnClick.bind(this)}>M-View</button>}
+            <div onClick={this.fnMenuClick.bind(this)} style={{left:this.state.l}}
+                className={this.state.ismobileMenu?'mobile-menu':'menu'}>
+             <a className={this.state.msg=='home'&&'menuclick'} id='home'>Home</a>
+             <a className={this.state.msg=='about'&&'menuclick'} id='about'>About</a>
+             <a className={this.state.msg=='contact'&& 'menuclick'} id='contact'>Contact</a>
+             <a className={this.state.msg=='service' && 'menuclick'}id='service'>Service</a>
+            </div>
+            {this.state.msg=='home'  && <Home/>}
+            {this.state.msg=='about' && <About/>}
+            {this.state.msg=='contact' && <Contact/>}
+            {this.state.msg=='service' && <Service/>}
+            </div>
+        }
+    }
+    function Home(){
+          return <div>
+                 <h1>this is home</h1>
+                 </div>
+    }
+    function About(){
+          return <div>
+                 <h1>this is about</h1>
+                 </div>
+    }
+    function Contact(){
+          return <div>
+            <h1>this is contact</h1>
+                 </div>
+    }
+    function Service(){
+          return <div>
+                 <h1>this is service info</h1>
+                 </div>
+    }
+    function Footer(){
+        return <div className='footer'>
+              &copy;rights belong to Gopi
+            </div>
+    }
+    class App extends React.Component{
+        render(){
+            return <div>
+                <Header/>
+                <Menu/>
+                <Footer/>
+                </div>
+        }
+    }
+    ReactDOM.render(<App/>,document.querySelector('#root'))
+    </script>

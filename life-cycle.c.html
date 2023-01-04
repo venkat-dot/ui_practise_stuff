@@ -1,0 +1,41 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    class Hellow extends React.Component{
+        state={cnt:0}
+        constructor(a,b){
+            super();
+            }
+      static getDerivedStateFromProps(neprops,newstate){
+        
+        console.log('getDerivedStateFromProps')
+      }
+      shouldComponentUpdate(newProps,newState,emptyObject){
+         
+         return true
+      }
+      getSnapshotBeforeUpdate(prevProps,prevState){
+        console.log(`getSnapshot`, prevState)
+        return 10
+      }
+      componentDidUpdate(prevProps,prevState,returnValueofSnapshot){
+        console.log(`Did update` + a,b,c)
+      }
+      componentWillUnmount(){
+        console.log('componentWillUnmount will take no arguments')
+      }
+       fnClick(){
+        this.setState({cnt:this.state.cnt+1})
+       }
+        render(){
+            
+            return <div><p>Hellow World Count:{this.state.cnt}</p>
+                <button onClick={this.fnClick.bind(this)}>Click</button>
+                </div>
+        }
+    }
+
+    ReactDOM.render(<Hellow name='Kohli'/>,document.getElementById('root'))
+</script>

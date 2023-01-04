@@ -1,0 +1,35 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div  id="root"></div>
+<script type="text/babel">
+    
+   class Sum extends React.Component{
+    state={result:0,
+           clr:'blue' 
+          }
+    
+    Click1=()=>{
+    let sum=Number(this.refs.n1.value)+Number(this.refs.n2.value)
+       this.setState({result:sum})  
+       this.refs.res.style.color=this.state.clr
+       this.setState({clr:sum>100?'Green':'red'})  
+       
+       
+}
+render(){
+    return <div>
+        <p>Enter No1 : <input ref='n1'/></p>
+        
+        
+        <p>Enter No2 : <input ref='n2'/></p>
+        
+        <button id='button' onClick={this.Click1}>Sum</button>
+        <h1 ref='res' style={{color: this.state.clr}}>{this.state.result} </h1>
+        </div>
+   }}
+    
+
+   ReactDOM.render(<Sum/>,document.getElementById('root'))
+  
+</script>

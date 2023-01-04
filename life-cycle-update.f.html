@@ -1,0 +1,36 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    function Hellow (){
+        const [name,setName]=React.useState('Kohli')
+        const [cnt,setCnt]=React.useState(0)
+        React.useEffect(
+            ()=>{
+                if(name!='Kohli'){
+                console.log('componentDidUpdate')}
+            },[name]
+        )
+        React.useEffect(
+            ()=>{
+                if(cnt!==0){
+                console.log('componentDidUpdate')}
+            },[cnt]
+        )
+           function fnNameChange(){
+            setName('Dhoni')
+           }
+           function fnIncCnt(){
+            setCnt(cnt+1)
+           }
+            return <div><div>Hellow {name}</div>
+           <p> <button onClick={fnNameChange}>Name-Change</button></p>
+           <p>Count:{cnt}</p>
+            <button onClick={fnIncCnt}>Inc-Count</button>
+            
+            </div>
+        }
+    
+    ReactDOM.render(<Hellow/>,document.getElementById('root'))
+</script>

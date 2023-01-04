@@ -1,0 +1,25 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    function Hellow(){
+            return <div>Hellow World</div>
+        }
+        function App(){
+            var [name,setName]=React.useState('Venkat')
+            React.useEffect(()=>{
+                console.log('ComponentDidMount called')
+            },[])
+            function fnClick(){
+                setName('Vikram')
+            }
+            return <div>
+                <h1>Hi, this is {name} </h1>
+                <button onClick={fnClick}>Click</button>
+                </div>
+        }
+    
+        
+    ReactDOM.render(<App/>,document.getElementById('root'))
+</script>

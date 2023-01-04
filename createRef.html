@@ -1,0 +1,26 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    class Sum extends React.Component{
+        result=0
+        ref1=React.createRef()
+        ref2=React.createRef()
+        ref3=React.createRef()
+        Click1=()=>{
+            let total=Number(this.ref1.current.value)+Number(this.ref2.current.value)
+           
+         this.result=total
+        }
+        render(){
+            return <div>
+                    <p><b>Enter No1 : </b><input ref={this.ref1}/></p>
+                    <p><b>Enter no2 : </b><input ref={this.ref2}/></p>
+                    <button onClick={this.Click1}>Sum</button>
+                    <h1 ref={this.ref3}>{this.result} </h1>
+                </div>
+        }
+    }
+    ReactDOM.render(<Sum/>,document.querySelector('#root'))
+</script>

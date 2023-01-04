@@ -1,0 +1,29 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+  class Name extends React.Component{
+    render(){
+        return <div>{this.m1()} {this.m2()}</div>
+    }
+    m1(){
+        return <b>Hello {this.props.x}</b>
+    }
+    m2(){
+        return <b>you are {this.props.y}</b>
+    }
+  }
+  
+  class App extends React.Component{
+    render(){
+        return <div>
+            <Name x='venkat' y='working'/>
+            <Name x='Dhoni' y='playing'/>
+            <Name x='Kohli' y='batting'/>
+            <Name x='Sachin' y='running'/>
+            </div>
+    }
+  }
+  ReactDOM.render(<App/>,document.getElementById('root'))
+</script>
